@@ -16,7 +16,6 @@ public class StateInfoResponse {
     private Integer status;
 
     private StateInfoResponse(Response response) {
-        this.status = SUCCESS;
         this.status = response.getStatus();
         this.body = response.readEntity(String.class);
     }
