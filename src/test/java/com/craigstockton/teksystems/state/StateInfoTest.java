@@ -64,6 +64,11 @@ public class StateInfoTest {
                 {"Arkansas"}};
     }
 
+    @DataProvider
+    public static Object[][] territories() {
+        return new Object[][]{{"AS"}, {"Northern Mariana Islands"}, {"PR"}, {"U.S. Virgin Islands"}};
+    }
+
     @Test
     public void smoke() {
         String actual = StateSearch.getInstance("NC").query().getMessage();
@@ -91,6 +96,18 @@ public class StateInfoTest {
 
     @Test(dependsOnMethods = "smoke", dataProvider = "existingStatesNames")
     public void existingStateNames(String searchTerm) {
+        String actual = StateSearch.getInstance(searchTerm).query().getMessage();
+        Assert.assertFalse(actual.contains("ERROR"));
+    }
+
+    @Test(dependsOnMethods = "smoke")
+    public void districtOfColumbia() {
+        String actual = StateSearch.getInstance("DC").query().getMessage();
+        Assert.assertFalse(actual.contains("ERROR"));
+    }
+
+    @Test(dependsOnMethods = "smoke", dataProvider = "territories")
+    public void territories(String searchTerm) {
         String actual = StateSearch.getInstance(searchTerm).query().getMessage();
         Assert.assertFalse(actual.contains("ERROR"));
     }

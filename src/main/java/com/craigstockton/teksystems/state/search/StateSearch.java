@@ -20,7 +20,7 @@ public class StateSearch {
         try {
             searchInfo = stateInfoRepository.query(term);
         } catch (Exception e) {
-            return StateQueryResult.getInstance(term, "ERROR: State search is currently unavailable");
+            return StateQueryResult.getErrorInstance(term);
         }
         return StateQueryResult.getInstance(term, searchInfo);
     }
