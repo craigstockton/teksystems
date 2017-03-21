@@ -1,0 +1,38 @@
+group 'com.craigstockton'
+version '0.0.1-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+version = '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.jboss.resteasy:resteasy-jaxrs:3.1.1.Final'
+    compile 'org.jboss.resteasy:resteasy-client:3.1.1.Final'
+    compile 'com.google.code.gson:gson:2.8.0'
+    compile 'org.apache.logging.log4j:log4j-api:2.3'
+    compile 'org.apache.logging.log4j:log4j-core:2.3'
+    compile 'org.testng:testng:6.8.21'
+    compile 'org.jboss.resteasy:resteasy-jaxrs:3.1.1.Final'
+    compile 'org.jboss.resteasy:resteasy-client:3.1.1.Final'
+    compile 'com.google.code.gson:gson:2.8.0'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.craigstockton.teksystems.state.StateSearchApp'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+test {
+    maxParallelForks = 4
+    useTestNG()
+}
