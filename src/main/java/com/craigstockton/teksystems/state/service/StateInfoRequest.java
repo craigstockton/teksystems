@@ -14,7 +14,7 @@ public class StateInfoRequest {
         return new StateInfoRequest();
     }
 
-    public StateInfoResponse get() {ResteasyClient build = new ResteasyClientBuilder().build();
+    public StateInfoResponse get() {
         Response response = request.get();
         return StateInfoResponse.getInstance(response);
     }
